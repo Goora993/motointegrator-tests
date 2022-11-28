@@ -1,0 +1,77 @@
+In Jira Xray, we can use Datasets and variables in designing test cases.
+In the task it is required to use Action, Data and Expected Result sections so I assume that the main tool is Jira Xray.
+Then I decided to design my test case for using Datasets and variables.
+
+No matter which service we choose, in all cases the pattern of behavior is exactly the same:
+       the most popular services on the main page -> list of the largest cities on the page of a specific service ->
+       results search page with workshop list -> workshop details
+So I thought it would be a good idea to design a generic test case that can use different inputs in different situations.
+For example, we can check the second tire shop from the Lublin list or the fourth battery shop from the Warsaw list.
+
+Variables:
+    app_main_page=https://motointegrator.com/pl/en/
+    service=Tires Change
+    city=Lublin
+    workshop_index=2
+    expected_hours_range=08:00 - 18:00
+    expected_workshop_rating=5
+
+Test case: Open workshop details using tiles.
+
+Step 1:
+Action:
+    Navigate to app main page.
+Data:
+    App main page: ${app_main_page}
+Expected Result:
+    Main page loaded successfully.
+
+Step 2:
+Action:
+    Scroll down to the tiles of the most popular services and hover over the service tile.
+Data:
+    Service: ${service}
+Expected Result:
+    The background of the tile has changed to one that shows the service activity.
+    A blue button with white text "Learn More" is also shown.
+*Screen shot with example attached*
+
+Step 3:
+Action:
+    Click the service tile.
+Data:
+    Service: ${service}
+Expected Result:
+    Service page loaded successfully.
+
+Step 4:
+Action:
+    Scroll down to the list of available largest cities and click the button with the city name.
+Data:
+    City: ${city}
+Expected Result:
+    Search result page loaded successfully.
+
+Step 5:
+Action:
+    Scroll down to the workshop which details you want to open and click on its image.
+    (Optional: if the workshop you want to open is further than the first page, change the page)
+Data:
+    Workshop on the list: ${workshop_index}
+Expected Result:
+    Workshop details page loaded successfully.
+    "Now open" label should be displayed,
+        it should have hours range ${expected_hours_range} on the right.
+*Screen shot with example attached*
+
+Step 6:
+Action:
+    Scroll down to the workshop rating section.
+Data:
+Expected Result:
+    Workshop rating should be equal ${expected_workshop_rating}
+
+
+
+
+
