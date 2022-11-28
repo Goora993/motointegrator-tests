@@ -83,7 +83,7 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-# *.iml
+ *.iml
 # modules.xml
 # .idea/misc.xml
 # *.ipr
@@ -213,5 +213,6 @@ replay_pid*
 .settings/
 target/
 .idea/
+build/
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,test,java
